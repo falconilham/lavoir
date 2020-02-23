@@ -8,13 +8,14 @@
  * @flow
  */
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, Image } from 'react-native';
 import { Provider } from '@ant-design/react-native';
 import RegisterForm from './RegisterForm';
 import LogoImage from './../../image/logoLavoir.jpeg';
 import { ScrollView } from 'react-native-gesture-handler';
+import styles from './utils/css';
 
-function Register() {
+function Register({ navigation }) {
   return (
     <Provider>
       <ScrollView style={styles.body}>
@@ -22,42 +23,12 @@ function Register() {
           <Image source={LogoImage} style={styles.logoImage} />
         </View>
         <RegisterForm
+          navigation={navigation}
         />
       </ScrollView>
     </Provider>
   );
 }
-let styles = StyleSheet.create({
-  body: {
-    height: '100%',
-    width: '100%',
-    backgroundColor: 'black',
-    flexDirection: 'column',
-    padding: 10,
-  },
-  container: {
-    backgroundColor: 'black',
-    borderWidth: 1,
-  },
-  form: {
-    alignItems: 'center',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: '100%',
-    maxHeight: '65%',
-    borderWidth: 1,
-  },
-  logoImage: {
-    width: 150,
-    height: 150,
-  },
-  wrapperImage: {
-    borderRadius: 90,
-    padding: 10,
-    overflow: 'hidden',
-    alignSelf: 'center',
-    marginBottom: 10,
-  },
-});
+
 
 export default Register;

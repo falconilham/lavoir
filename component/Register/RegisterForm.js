@@ -2,19 +2,19 @@
 import React from 'react';
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-import { TextInput, Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import { TextInput, Text, View, TouchableOpacity } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import { Formik } from 'formik';
 import schemaValidation from './utils/schemaValidation';
 import Currency from '../helper/Currency';
+import styles from './utils/css';
 
-function RegisterForm() {
+function RegisterForm({ navigation }) {
     return (
         <Formik
             initialValues={
                 {
-                    pria: '',
-                    wanita: '',
+                    email: '',
                     weddingDate: new Date(),
                     budget: '',
                     guest: '',
@@ -36,31 +36,17 @@ function RegisterForm() {
                 return (
                     <View style={styles.form}>
                         <View style={styles.boxInput}>
-                            <Text style={styles.font}>Pria</Text>
+                            <Text style={styles.font}>Email</Text>
                             <View>
                                 <TextInput
-                                    placeholder="Nama Mempelai Pria"
-                                    placeholderTextColor="#a67c00"
-                                    style={styles.inputText}
-                                    value={values.pria}
-                                    name='pria'
-                                    onChangeText={(value) => setFieldValue('pria', value)}
-                                />
-                                <Text style={styles.errors}>{errors.pria && touched.pria && errors.pria}</Text>
-                            </View>
-                        </View>
-                        <View style={styles.boxInput}>
-                            <Text style={styles.font}>Wanita</Text>
-                            <View>
-                                <TextInput
-                                    placeholder="Nama Mempelai Wanita"
+                                    placeholder="Email"
                                     placeholderTextColor="#a67c00"
                                     style={styles.inputText}
                                     value={values.wanita}
                                     name='wanita'
-                                    onChangeText={(value) => setFieldValue('wanita', value)}
+                                    onChangeText={(value) => setFieldValue('email', value)}
                                 />
-                                <Text style={styles.errors}>{errors.wanita && touched.wanita && errors.wanita}</Text>
+                                <Text style={styles.errors}>{errors.email && touched.email && errors.email}</Text>
                             </View>
                         </View>
                         <View style={styles.boxInputDate}>
@@ -92,7 +78,7 @@ function RegisterForm() {
                             <View>
                                 <TextInput
                                     style={styles.inputText}
-                                    value={Currency(values.budget, 'RP')}
+                                    value={values.budget}
                                     name='budget'
                                     placeholderTextColor="#a67c00"
                                     placeholder="Budget"
@@ -100,7 +86,7 @@ function RegisterForm() {
                                     keyboardType="numeric"
                                     maxLength={20}
                                 />
-                                <Text style={styles.budget}>{errors.budget && touched.budget && errors.budget}</Text>
+                                <Text style={styles.errors}>{errors.budget && touched.budget && errors.budget || touched.budget}</Text>
                             </View>
                         </View>
                         <View style={styles.boxInput}>
@@ -125,7 +111,7 @@ function RegisterForm() {
                             <TouchableOpacity onPress={handleReset} style={styles.buttonReset}>
                                 <Text style={styles.font}>Reset</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={handleSubmit}>
+                            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                                 <Text style={styles.font}>Next ></Text>
                             </TouchableOpacity>
                         </View>
@@ -135,82 +121,5 @@ function RegisterForm() {
         </Formik>
     );
 }
-
-let styles = StyleSheet.create({
-    buttonReset: {
-        backgroundColor: '#a67c00',
-        padding: 10,
-        width: 100,
-        borderRadius: 30,
-    },
-    buttonSubmit: {
-        backgroundColor: '#a67c00',
-        padding: 10,
-        width: 100,
-        borderRadius: 30,
-    },
-    boxButton: {
-        alignItems: 'center',
-        display: 'flex',
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-        color: 'white',
-        width: '80%',
-        marginVertical: 30,
-    },
-    boxInput: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-        color: 'white',
-        width: '80%',
-        marginBottom: 10,
-    },
-    boxInputDate: {
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-        width: '80%',
-        marginHorizontal: 10,
-        color: 'white',
-        borderWidth: 1,
-        marginVertical: 10,
-    },
-    form: {
-        alignItems: 'center',
-        flexDirection: 'column',
-    },
-    datePicker: {
-        display: 'flex',
-        width: '64%',
-        borderWidth: 1,
-    },
-    button: {
-        color: 'white',
-        backgroundColor: '#DABB56',
-        padding: 10,
-        borderRadius: 10,
-    },
-    inputText: {
-        borderBottomColor: '#DABB56',
-        borderBottomWidth: 1,
-        color: 'white',
-        width: 200,
-        justifyContent: 'space-between',
-    },
-    font: {
-        color: 'white',
-        textAlign: 'center',
-    },
-    fontLabel: {
-        color: 'white',
-    },
-    fontLogo: {
-        color: '#DABB56',
-        textAlign: 'center',
-    },
-    errors: {
-        color: '#ffdc73',
-    },
-});
 
 export default RegisterForm;
