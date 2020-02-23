@@ -6,7 +6,7 @@ import { TextInput, Text, View, TouchableOpacity, StyleSheet } from 'react-nativ
 import DatePicker from 'react-native-datepicker';
 import { Formik } from 'formik';
 import schemaValidation from './utils/schemaValidation';
-import { Modal } from '@ant-design/react-native';
+import Currency from '../helper/Currency';
 
 function RegisterForm() {
     return (
@@ -16,7 +16,7 @@ function RegisterForm() {
                     pria: '',
                     wanita: '',
                     weddingDate: new Date(),
-                    budget: 0,
+                    budget: '',
                     guest: '',
                 }
             }
@@ -40,6 +40,7 @@ function RegisterForm() {
                             <View>
                                 <TextInput
                                     placeholder="Nama Mempelai Pria"
+                                    placeholderTextColor="#a67c00"
                                     style={styles.inputText}
                                     value={values.pria}
                                     name='pria'
@@ -53,6 +54,7 @@ function RegisterForm() {
                             <View>
                                 <TextInput
                                     placeholder="Nama Mempelai Wanita"
+                                    placeholderTextColor="#a67c00"
                                     style={styles.inputText}
                                     value={values.wanita}
                                     name='wanita'
@@ -90,24 +92,27 @@ function RegisterForm() {
                             <View>
                                 <TextInput
                                     style={styles.inputText}
-                                    value={values.budget}
+                                    value={Currency(values.budget, 'RP')}
                                     name='budget'
-                                    textContentType='telephoneNumber'
+                                    placeholderTextColor="#a67c00"
+                                    placeholder="Budget"
                                     onChangeText={(value) => setFieldValue('budget', value)}
                                     keyboardType="numeric"
                                     maxLength={20}
                                 />
-                                <Text style={styles.errors}>{errors.wanita && touched.wanita && errors.wanita}</Text>
+                                <Text style={styles.budget}>{errors.budget && touched.budget && errors.budget}</Text>
                             </View>
                         </View>
                         <View style={styles.boxInput}>
                             <View>
-                                <Text style={styles.font}>Tamu</Text>
+                                <Text style={styles.font}>Guest</Text>
                             </View>
                             <View>
                                 <TextInput
                                     style={styles.inputText}
                                     value={values.guest}
+                                    placeholderTextColor="#a67c00"
+                                    placeholder="Total Your Guest"
                                     name='guest'
                                     onChangeText={(value) => setFieldValue('guest', value)}
                                     keyboardType="numeric"
@@ -154,7 +159,6 @@ let styles = StyleSheet.create({
         marginVertical: 30,
     },
     boxInput: {
-        alignItems: 'center',
         display: 'flex',
         justifyContent: 'space-between',
         flexDirection: 'row',
@@ -163,7 +167,6 @@ let styles = StyleSheet.create({
         marginBottom: 10,
     },
     boxInputDate: {
-        alignItems: 'center',
         justifyContent: 'space-between',
         flexDirection: 'row',
         width: '80%',
@@ -206,8 +209,8 @@ let styles = StyleSheet.create({
         textAlign: 'center',
     },
     errors: {
-        color: 'red',
-    }
+        color: '#ffdc73',
+    },
 });
 
 export default RegisterForm;

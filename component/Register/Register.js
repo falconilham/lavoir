@@ -7,8 +7,8 @@
  * @format
  * @flow
  */
-import React, { useState, createRef } from 'react';
-import { View, StyleSheet, Image, TouchableOpacity, Text } from 'react-native';
+import React from 'react';
+import { View, StyleSheet, Image } from 'react-native';
 import { Provider } from '@ant-design/react-native';
 import RegisterForm from './RegisterForm';
 import LogoImage from './../../image/logoLavoir.jpeg';
