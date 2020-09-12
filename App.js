@@ -9,48 +9,21 @@
  */
 import React from 'react';
 import { Provider } from 'react-redux';
-
+import { Provider as PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import store from './reducers';
 
-import Register from './component/Register/Register';
-import Home from './component/Home/Home';
-
-const Stack = createStackNavigator();
-
-const mainApp = [
-  {
-    name: 'Register',
-    component: Register,
-    options: {
-      headerShown: false,
-    },
-  },
-  {
-    name: 'Home',
-    component: Home,
-    headerShown: true,
-  },
-];
+import store from './store';
+import theme from './contant/theme/theme';
+import Router from './screen'
 
 function App() {
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Register">
-          {mainApp.map((item, i) => {
-            return (
-              <Stack.Screen
-                key={i}
-                name={item.name}
-                component={item.component}
-                options={item.options}
-              />
-            );
-          })}
-        </Stack.Navigator>
-      </NavigationContainer>
+      <PaperProvider>
+        <NavigationContainer theme={theme}>
+          <Router />
+        </NavigationContainer>
+      </PaperProvider>
     </Provider>
   );
 }

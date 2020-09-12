@@ -1,0 +1,62 @@
+[
+    {
+        "name": "South Jakarta",
+        "child": [
+            {
+                "name": "Allsha Building",
+                "location": "Sudirman",
+                "type": "indoor"
+            },
+            {
+                "name": "Intercontinental jakarta",
+                "location": "Kuningan",
+                "type": "indoor"
+            }
+        ]
+    },
+    {
+        "name": "West Jakarta",
+        "child": [
+            {
+                "name": "Allsha Building",
+                "location": "Sudirman",
+                "type": "indoor"
+            },
+            {
+                "name": "Intercontinental jakarta",
+                "location": "Kuningan",
+                "type": "indoor"
+            }
+        ]
+    },
+    {
+        "name": "East Jakarta",
+        "child": [
+            {
+                "name": "Allsha Building",
+                "location": "Sudirman",
+                "type": "indoor"
+            },
+            {
+                "name": "Intercontinental jakarta",
+                "location": "Kuningan",
+                "type": "indoor"
+            }
+        ]
+    },
+    {
+        "name": "North Jakarta",
+        "child": [
+            {
+                "name": "Allsha Building",
+                "location": "Sudirman",
+                "type": "indoor"
+            },
+            {
+                "name": "Intercontinental jakarta",
+                "location": "Kuningan",
+                "type": "indoor"
+            }
+        ]
+    }
+]

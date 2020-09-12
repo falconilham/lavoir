@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Weeding Factory",
+        "parentBuilding": "Allsha Building",
+        "description": "Let us make your special day a memorable one!",
+        "typeService": "Photography"
+    },
+    {
+        "name": "Renaya Video Graphy",
+        "parentBuilding": "Allsha Building",
+        "description": "Let us make your special day a memorable one!",
+        "typeService": "Videography"
+    },
+    {
+        "name": "Cerita Bahagia",
+        "parentBuilding": "Intercontinental jakarta",
+        "description": "Let us make your special day a memorable one!",
+        "typeService": "Wedding Planning"
+    },
+    {
+        "name": "SOLITARE",
+        "parentBuilding": "Allsha Building",
+        "description": "Let us make your special day a memorable one!",
+        "typeService": "Invitation"
+    },
+    {
+        "name": "Gemilang Craft",
+        "parentBuilding": "Intercontinental jakarta",
+        "description": "Let us make your special day a memorable one!",
+        "typeService": "Gift"
+    }
+]
