@@ -42,8 +42,9 @@ let styles = StyleSheet.create({
   },
   form: {
     alignItems: 'center',
+    justifyContent: 'center',
     flexDirection: 'column',
-    height: '65%',
+    height: '100%',
   },
   datePicker: {
     display: 'flex',
@@ -99,6 +100,16 @@ let styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: 10,
   },
+  card:{
+    borderRadius: 10, 
+    borderWidth: 1, 
+    borderColor: 'yellow', 
+    width: '80%', 
+    alignSelf: 'center',
+    height: 100,
+    marginVertical: 10,
+    padding: 5
+  }
 });
 
 export default styles;

@@ -1,18 +1,21 @@
 import React from 'react';
-import {TextInput, Text, View, TouchableOpacity} from 'react-native';
+import { TextInput, Text, View, TouchableOpacity } from 'react-native';
 import DatePicker from 'react-native-datepicker';
-import {Formik} from 'formik';
+import { Formik } from 'formik';
 // import schemaValidation from './utils/schemaValidation';
 // import Currency from '../helper/Currency';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import styles from '../utils/css';
-import {addAccount} from '../../reducers/Account';
+import { addOrder } from '../../reducers/Account';
 
-function RegisterForm(props) {
+function RegisterForm({ navigation, addOrder, ...props }) {
   return (
     <Formik
       initialValues={{
-        email: '',
+        bride: {
+          men: '',
+          women: ''
+        },
         weddingDate: new Date(),
         budget: '',
         guest: '',
@@ -20,8 +23,8 @@ function RegisterForm(props) {
       isValidating={false}
       // validationSchema={schemaValidation}
       onSubmit={value => {
-        props.addAccount({...props.account.accountInfo, ...value});
-        props.navigation.navigate('Home');
+        addOrder(value);
+        navigation.navigate('Building');
       }}>
       {formik => {
         let {
@@ -35,19 +38,27 @@ function RegisterForm(props) {
         return (
           <View style={styles.form}>
             <View style={styles.boxInput}>
-              <Text style={styles.font}>Email</Text>
+              <Text style={styles.font}>Bride Men</Text>
               <View>
                 <TextInput
-                  placeholder="Email"
+                  placeholder="Bride Men"
                   placeholderTextColor="#a67c00"
                   style={styles.inputText}
-                  value={values.wanita}
-                  name="wanita"
-                  onChangeText={value => setFieldValue('email', value)}
+                  value={values.bride.men}
+                  onChangeText={value => setFieldValue('bride.men', value)}
                 />
-                <Text style={styles.errors}>
-                  {errors.email && touched.email && errors.email}
-                </Text>
+              </View>
+            </View>
+            <View style={styles.boxInput}>
+              <Text style={styles.font}>Bride Women</Text>
+              <View>
+                <TextInput
+                  placeholder="Bride Women"
+                  placeholderTextColor="#a67c00"
+                  style={styles.inputText}
+                  value={values.bride.women}
+                  onChangeText={value => setFieldValue('bride.women', value)}
+                />
               </View>
             </View>
             <View style={styles.boxInputDate}>
@@ -138,8 +149,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addAccount: account => {
-      dispatch(addAccount(account));
+    addOrder: order => {
+      dispatch(addOrder(order));
     },
   };
 };

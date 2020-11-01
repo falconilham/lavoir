@@ -6,8 +6,10 @@ import {
   Text,
   ScrollView,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
+  Image
 } from 'react-native';
+import LogoImage from './../../image/logoLavoir.jpeg';
 import { connect } from 'react-redux'
 import styles from '../utils/css';
 import { Formik } from 'formik';
@@ -56,17 +58,13 @@ function Login(props) {
   }, [])
   if (isLoading) {
     return (
-      <ActivityIndicator style={{ alignSelf: 'center', justifyContent: 'center' }} />
+      <View style={{alignItems: 'center', justifyContent: 'center'}}>
+         <ActivityIndicator/>
+      </View>
     )
   } else {
     return (
-      <ScrollView
-        contentContainerStyle={{
-          ...styles.body,
-          justifyContent: 'center',
-        }}>
-
-        <Text style={{ ...styles.font, marginBottom: 30 }}>Login</Text>
+      <View style={styles.body}>
         <Formik
           enableReinitialize
           initialValues={{
@@ -77,9 +75,12 @@ function Login(props) {
             loginFirebase(value.email, value.password)
           }}>
           {props => {
-            let { values, setFieldValue, handleReset, handleSubmit } = props;
+            let { values, setFieldValue, handleReset, handleSubmit, dirty } = props;
             return (
               <View style={styles.form}>
+                <View style={styles.wrapperImage}>
+                  <Image source={LogoImage} style={styles.logoImage} />
+                </View>
                 <View style={styles.boxInput}>
                   <Text style={styles.font}>Email</Text>
                   <View>
@@ -115,7 +116,7 @@ function Login(props) {
                     {isLoading ? (
                       <ActivityIndicator size="small" color="white" />
                     ) : (
-                        <Text style={styles.font}>Login</Text>
+                        <Text disabled={!dirty} style={styles.font}>Login</Text>
                       )}
                   </TouchableOpacity>
                 </View>
@@ -123,7 +124,7 @@ function Login(props) {
             );
           }}
         </Formik>
-      </ScrollView>
+      </View>
     )
   }
 }
